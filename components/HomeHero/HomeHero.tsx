@@ -1,8 +1,10 @@
+import Header from "../Header/Header"
 import css from "./HomeHero.module.css"
 
 export default function HomeHero() {
     return (
         <section className={css.hero}>
+            <Header />
         <div className={css.HeroContainer}>
         <div className={css.heroInfo}>
             <h1 className={css.heroTitle}>Make Life Easier for the Family:</h1>

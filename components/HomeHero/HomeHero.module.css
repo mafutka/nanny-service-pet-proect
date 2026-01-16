@@ -1,58 +1,55 @@
 .hero {
-    position: relative;
+  position: relative;
   background-color: var(--background-header);
-  min-height: 736px;
+ height: 736px;
   overflow: hidden;
   border-radius: 30px;
 }
 .HeroContainer {
-    max-width: 1376px;       
+  max-width: 1376px;
   height: 736px;
   display: flex;
   align-items: center;
   justify-content: center;
-    width: 50%;
-  
+  width: 50%;
 }
 .heroInfo {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 0;
-    width: 517px;
-height: 322px;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0;
+  width: 517px;
+  height: 322px;
 }
 .heroTitle {
-    font-weight: 500;
-font-size: 70px;
-line-height: 100%;
-letter-spacing: -0.03em;
-color: var(--text-light);
-margin-bottom: 28px;
+  font-weight: 500;
+  font-size: 70px;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+  color: var(--text-light);
+  margin-bottom: 28px;
 }
 .heroText {
-    font-weight: 400;
-font-size: 28px;
-line-height: 107%;
-letter-spacing: -0.02em;
-color: var(--text-light);
-margin-bottom: 64px;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 107%;
+  letter-spacing: -0.02em;
+  color: var(--text-light);
+  margin-bottom: 64px;
 }
 
 .heroBtn {
-    background: transparent;
-    border: 1px solid rgba(251, 251, 251, 0.4);
-border-radius: 30px;
-padding: 18px 50px;
-width: 230px;
-height: 60px;
-font-weight: 500;
-font-size: 20px;
-line-height: 120%;
-letter-spacing: -0.01em;
-color: var(--text-light);
-
+  background: transparent;
+  border: 1px solid rgba(251, 251, 251, 0.4);
+  border-radius: 30px;
+  padding: 18px 50px;
+  width: 230px;
+  height: 60px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  color: var(--text-light);
 }
 .imgWrapper {
   position: absolute;
@@ -63,33 +60,30 @@ color: var(--text-light);
   z-index: 2;
 }
 .heroImg {
-
-    width: 100%;
+  width: 100%;
   height: 100%;
   object-fit: cover;
-  
 }
 .badgeWrapper {
-    position: absolute;
+  position: absolute;
   bottom: 50px;
   right: 50px;
   width: 284px;
-height: 118px;
-border-radius: 20px;
+  height: 118px;
+  border-radius: 20px;
   background: var(--background-light);
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .badjeText {
-    font-weight: 400;
-font-size: 16px;
-color: var(--text-secondary);
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--text-secondary);
 }
-.badjeNumber{
-    font-weight: 700;
-font-size: 24px;
-color: var(--text-primary);
+.badjeNumber {
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--text-primary);
 }
