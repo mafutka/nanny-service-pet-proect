@@ -2,6 +2,7 @@
 :root {
   --background-main: #F3F3F3;
   --background-header: #103931;
+  --background-light: #fbfbfb;
   --text-primary: #11101c;
   --text-secondary: rgba(17, 16, 28, 0.5);
   --text-light: #fbfbfb;
@@ -15,4 +16,18 @@ body {
     Helvetica,
     Arial,
     sans-serif;
+    max-width: 1440px;;
+}
+
+button {
+  display: block;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
 }
