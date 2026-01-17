@@ -7,7 +7,10 @@ export default function RegisterForm() {
   return (
     <>
       <h2>Registration</h2>
-      <p>Create an account to find your perfect babysitter.</p>
+      <p>Thank you for your interest in our platform! In order to register,
+         we need some information. 
+         Please provide us with the following information.
+      </p>
 
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder="Name" required />
