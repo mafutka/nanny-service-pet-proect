@@ -20,6 +20,7 @@
   padding: 0;
   width: 517px;
   height: 322px;
+  margin-bottom: 163px;
 }
 .heroTitle {
   font-weight: 500;
@@ -49,6 +50,9 @@
   font-size: 20px;
   line-height: 120%;
   letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
   color: var(--text-light);
 }
 .imgWrapper {
@@ -73,8 +77,18 @@
   border-radius: 20px;
   background: var(--background-light);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.bedjeIcon{
+  border-radius: 13px;
+width: 54px;
+height: 54px;
+background: var(--background-header);
+ display: flex;
+justify-content: center;
+align-items: center;
 }
 
 .badjeText {
