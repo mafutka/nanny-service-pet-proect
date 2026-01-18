@@ -26,7 +26,9 @@ export default function AuthModal({ type, onClose }: Props) {
         onClick={(e) => e.stopPropagation()}
       >
         <button className={css.closeBtn} onClick={onClose}>
-          ✕
+            <svg width="19" height="19" className={css.closeIcon}>
+                <use href="/symbol-defs.svg#icon-x"></use>
+              </svg>
         </button>
 
         {type === "login" ? <LoginForm /> : <RegisterForm />}

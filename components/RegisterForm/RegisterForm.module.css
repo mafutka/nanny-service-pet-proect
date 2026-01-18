@@ -1,0 +1,9 @@
+.registerContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 64px;
+}
+.registerForm {
+    display: flex;
+    flex-direction: column;
+}

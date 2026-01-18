@@ -1,23 +1,23 @@
+import FormLayout from "../FormLayout/FormLayout";
+import TextInput from "../TextInput/TextInput";
+import SubmitBtn from "../SubmitBtn/SubmitBtn";
+
 export default function LoginForm() {
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Login submit");
   };
 
   return (
-    <>
-      <h2>Log in</h2>
-      <p>
-        Welcome back! Please enter your credentials to access your
-        account and continue your babysitter search.
-      </p>
+    <FormLayout
+      title="Log in"
+      text="Welcome back! Please enter your credentials to access your account."
+      onSubmit={handleSubmit}
+    >
+      <TextInput type="email" placeholder="Email" required />
+      <TextInput type="password" placeholder="Password" required />
 
-      <form onSubmit={handleSubmit}>
-        <input type="email" placeholder="Email" required />
-        <input type="password" placeholder="Password" required />
-
-        <button type="submit">Log in</button>
-      </form>
-    </>
+      <SubmitBtn>Log in</SubmitBtn>
+    </FormLayout>
   );
 }

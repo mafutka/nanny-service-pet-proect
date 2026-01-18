@@ -1,24 +1,24 @@
+import FormLayout from "../FormLayout/FormLayout";
+import TextInput from "../TextInput/TextInput";
+import SubmitBtn from "../SubmitBtn/SubmitBtn";
+
 export default function RegisterForm() {
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Register submit");
   };
 
   return (
-    <>
-      <h2>Registration</h2>
-      <p>Thank you for your interest in our platform! In order to register,
-         we need some information. 
-         Please provide us with the following information.
-      </p>
+    <FormLayout
+      title="Registration"
+      text="Thank you for your interest in our platform! Please provide the following information."
+      onSubmit={handleSubmit}
+    >
+      <TextInput type="text" placeholder="Name" required />
+      <TextInput type="email" placeholder="Email" required />
+      <TextInput type="password" placeholder="Password" required />
 
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Name" required />
-        <input type="email" placeholder="Email" required />
-        <input type="password" placeholder="Password" required />
-
-        <button type="submit">Register</button>
-      </form>
-    </>
+      <SubmitBtn>Register</SubmitBtn>
+    </FormLayout>
   );
 }

@@ -13,10 +13,10 @@ export default function Header() {
             <p className={css.headerLogo}>Nanny.Services</p>
             <Navigation />
             {!isLoggedIn && (
-  <>
-    <button onClick={() => setAuthType("login")}>Log in</button>
-    <button onClick={() => setAuthType("register")}>Register</button>
-  </>
+  <div className={css.btnBlock}>
+    <button className={css.loginBtn} onClick={() => setAuthType("login")}>Log in</button>
+    <button className={css.registerBtn} onClick={() => setAuthType("register")}>Register</button>
+  </div>
 )}
 
 {authType && (
