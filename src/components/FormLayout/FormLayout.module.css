@@ -1,0 +1,27 @@
+.container {
+    padding: 64px;
+}
+
+.title {
+    margin-bottom: 20px;
+}
+
+.text {
+    margin-bottom: 40px;
+}
+
+.form {
+    display: flex;
+  flex-direction: column;
+
+}
+
+.fields {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form :global(button[type="submit"]) {
+  margin-top: 40px;
+}   

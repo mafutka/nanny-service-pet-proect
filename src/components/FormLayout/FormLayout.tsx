@@ -14,7 +14,9 @@ export default function FormLayout({ title, text, onSubmit, children }: Props) {
       <p className={css.text}>{text}</p>
 
       <form className={css.form} onSubmit={onSubmit}>
-        {children}
+        <div className={css.fields}>
+          {children}
+        </div>
       </form>
     </div>
   );

@@ -1,6 +1,6 @@
 import FormLayout from "../FormLayout/FormLayout";
-import TextInput from "../TextInput/TextInput";
 import SubmitBtn from "../SubmitBtn/SubmitBtn";
+import TextInput from "../TextInput/TextInput";
 
 export default function LoginForm() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -16,8 +16,9 @@ export default function LoginForm() {
     >
       <TextInput type="email" placeholder="Email" required />
       <TextInput type="password" placeholder="Password" required />
-
       <SubmitBtn>Log in</SubmitBtn>
     </FormLayout>
+    
+    
   );
 }
