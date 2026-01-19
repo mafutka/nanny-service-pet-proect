@@ -1,17 +1,22 @@
 .header {
-    height: 88px;
-    z-index: 5; 
-  padding: 20px 96px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.transparent {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100%;        
+  height: 88px;
+  z-index: 10;
+}
+.inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 20px 96px;   
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;          
+}
+
+.transparent {
   background: transparent;
 }
 
