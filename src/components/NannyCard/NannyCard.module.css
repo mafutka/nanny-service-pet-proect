@@ -1,2 +1,68 @@
+.container{
+    display: flex;
+    padding: 24px;
+    gap: 24px;
+    border-radius: 24px;
+    max-width: 1184px;
+    width: 100%;
+    height: auto;
+    background-color: var(--background-light);
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.image {
+    border: 2px solid rgba(16, 57, 49, 0.2);
+border-radius: 30px;
+width: 120px;
+height: 120px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.avatar{
+    object-fit: cover;
+  border-radius: 15px;
+}
+.infoBlock {
+    display: flex;
+    flex-direction: column;
+}
+
+.adressBlock {
+    display: flex;
+    gap: 16px;
+}
+
+.greenprice {color: #38cd3e;}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.tagItem {
+    border-radius: 24px;
+padding: 8px 16px;
+width: auto;
+height: 40px;
+background: var(--background-main);
+}
+
+.tagItemText {
+    font-weight: 500;
+font-size: 16px;
+line-height: 150%;
+color: #8a8a89;
+}
+.fromJson {
+    color: var(--text-primary);
+}
+
 .heartBtn {}
 .heartIcon{}

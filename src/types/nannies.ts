@@ -5,7 +5,7 @@ export type Review = {
 };
 
 export type Nanny = {
-  id: string; // UI-id
+  id: string; 
   name: string;
   avatar_url: string;
   birthday: string;
