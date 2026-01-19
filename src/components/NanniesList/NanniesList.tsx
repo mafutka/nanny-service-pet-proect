@@ -14,6 +14,8 @@ export default function NanniesList() {
   const [visibleCount, setVisibleCount] = useState(3);
 
   const visibleNannies = nannies.slice(0, visibleCount);
+  console.log("Rendering NanniesList");
+
 
   return (
     <section>

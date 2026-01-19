@@ -1,16 +1,25 @@
 .header {
-    position: absolute;
     height: 88px;
-    position: relative;
-    background: var(--background-header);
-    z-index: 5;
-  background: transparent; 
+    z-index: 5; 
   padding: 20px 96px;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
+
+.transparent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: transparent;
+}
+
+.colored {
+  position: relative;
+  background: var(--background-header);
+}
+
 .headerLogo {
     font-weight: 500;
 font-size: 24px;

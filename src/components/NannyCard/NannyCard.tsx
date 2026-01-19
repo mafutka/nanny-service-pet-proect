@@ -5,6 +5,8 @@ type Props = {
   isLoggedIn?: boolean;
 };
 
+  console.log("Rendering NanniesPage");
+
 export default function NannyCard({ nanny, isLoggedIn }: Props) {
   return (
     <li>

@@ -3,14 +3,19 @@
 import Navigation from "../Navigation/Navigation"
 import { useState } from "react";
 import AuthModal from "../AuthModal/AuthModal";
-import css from "./Header.module.css"
+import clsx from "clsx";
+import css from "./Header.module.css";
 
-export default function Header() {
+type HeaderProps = {
+  variant?: "transparent" | "colored";
+};
+
+export default function Header({ variant = "colored" }: HeaderProps) {
     const [authType, setAuthType] = useState<"login" | "register" | null>(null);
     const isLoggedIn = false;
     return (
         <header className={css.header}>
-            <p className={css.headerLogo}>Nanny.Services</p>
+            <p className={clsx(css.header, css[variant])}>Nanny.Services</p>
             <Navigation />
             {!isLoggedIn && (
   <div className={css.btnBlock}>
