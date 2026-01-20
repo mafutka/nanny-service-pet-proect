@@ -25,3 +25,18 @@
 .form :global(button[type="submit"]) {
   margin-top: 40px;
 }   
+
+.row {
+  display: flex;
+  gap: 16px;
+}
+
+.row > * {
+  flex: 1;
+}
+
+@media (max-width: 480px) {
+  .row {
+    flex-direction: column;
+  }
+}

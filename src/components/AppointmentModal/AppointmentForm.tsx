@@ -12,6 +12,8 @@ import SubmitBtn from "../SubmitBtn/SubmitBtn"
 
 import { Nanny } from "@/types/nannies"
 
+import css from "../FormLayout/FormLayout.module.css"
+
 type Props = {
   nanny: Nanny
   onSuccess: () => void
@@ -36,28 +38,34 @@ export default function AppointmentForm({ nanny, onSuccess }: Props) {
 
   return (
     <FormLayout
-      title={`Make an appointment with ${nanny.name}`}
-      text="Please fill in the form below"
+      title={`Make an appointment with a babysitter ${nanny.name}`}
+      text="Arranging a meeting with a caregiver for your child is the first step to creating a safe and comfortable environment. Fill out the form below so we can match you with the perfect care partner."
       onSubmit={handleSubmit(onSubmit)}
     >
-      <TextInput placeholder="Parent name" {...register("parentName")} />
-      <p>{errors.parentName?.message}</p>
+      <div className={css.row}>
+        <TextInput placeholder="Address" {...register("address")} />
 
+        <TextInput placeholder="+380" {...register("phone")} />
+        <p>{errors.phone?.message}</p>
+      </div>
+
+      <div className={css.row}>
+        <TextInput
+          type="number"
+          placeholder="Child age"
+          {...register("childAge")}
+        />
+
+        <TextInput type="00:00" {...register("date")} />
+      </div>
       <TextInput type="email" placeholder="Email" {...register("email")} />
       <p>{errors.email?.message}</p>
 
-      <TextInput placeholder="Phone" {...register("phone")} />
-      <p>{errors.phone?.message}</p>
-
-      <TextInput placeholder="Address" {...register("address")} />
-
       <TextInput
-        type="number"
-        placeholder="Child age"
-        {...register("childAge")}
+        placeholder="Father's or mother's name"
+        {...register("parentName")}
       />
-
-      <TextInput type="date" {...register("date")} />
+      <p>{errors.parentName?.message}</p>
 
       <Textarea placeholder="Comment" {...register("comment")} />
 
