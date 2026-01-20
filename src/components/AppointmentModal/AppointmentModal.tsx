@@ -1,5 +1,8 @@
-import AppointmentForm from "./AppointmentForm";
-import { Nanny } from "@/types/nannies";
+"use client"
+
+import { createPortal } from "react-dom"
+import AppointmentForm from "./AppointmentForm"
+import { Nanny } from "@/types/nannies"
 import css from "./AppointmentModal.module.css"
 
 type Props = {
@@ -8,12 +11,12 @@ type Props = {
 }
 
 export default function AppointmentModal({ nanny, onClose }: Props) {
-  return (
+  return createPortal(
     <div className={css.backdrop} onClick={onClose}>
       <div className={css.modal} onClick={e => e.stopPropagation()}>
-        <h2>Make an appointment with {nanny.name}</h2>
-        <AppointmentForm onSuccess={onClose} />
+        <AppointmentForm nanny={nanny} onSuccess={onClose} />
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }

@@ -3,6 +3,7 @@
 import { calcAge } from "@/utils/calcAge"
 import { useState } from "react"
 import { Nanny } from "@/types/nannies"
+import AppointmentModal from "../AppointmentModal/AppointmentModal"
 import css from "./NannyCard.module.css"
 
 type Props = {
@@ -145,6 +146,12 @@ export default function NannyCard({ nanny, isLoggedIn }: Props) {
             </button>
           </>
         )}
+         {isModalOpen && (
+    <AppointmentModal
+      nanny={nanny}
+      onClose={() => setIsModalOpen(false)}
+    />
+  )}
       </div>
     </div>
   )

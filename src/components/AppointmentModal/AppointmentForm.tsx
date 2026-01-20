@@ -1,56 +1,67 @@
+"use client"
+
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { appointmentSchema } from "@/validation/appointmentSchema"
+import { AppointmentFormValues } from "@/types/form"
 
-export type AppointmentFormValues = {
-  parentName: string
-  email: string
-  phone: string
-  address: string
-  childAge: number
-  date: string
-  comment: string
+import FormLayout from "../FormLayout/FormLayout"
+import TextInput from "../TextInput/TextInput"
+import Textarea from "../TextInput/Textarea"
+import SubmitBtn from "../SubmitBtn/SubmitBtn"
+
+import { Nanny } from "@/types/nannies"
+
+type Props = {
+  nanny: Nanny
+  onSuccess: () => void
 }
 
-export default function AppointmentForm({ onSuccess }: { onSuccess: () => void }) {
+export default function AppointmentForm({ nanny, onSuccess }: Props) {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({
+  } = useForm<AppointmentFormValues>({
     resolver: yupResolver(appointmentSchema),
   })
 
   const onSubmit = (data: AppointmentFormValues) => {
     console.log("Appointment data:", data)
-
     alert("Appointment successfully created ✅")
-
     reset()
     onSuccess()
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register("parentName")} placeholder="Parent name" />
+    <FormLayout
+      title={`Make an appointment with ${nanny.name}`}
+      text="Please fill in the form below"
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <TextInput placeholder="Parent name" {...register("parentName")} />
       <p>{errors.parentName?.message}</p>
 
-      <input {...register("email")} placeholder="Email" />
+      <TextInput type="email" placeholder="Email" {...register("email")} />
       <p>{errors.email?.message}</p>
 
-      <input {...register("phone")} placeholder="Phone" />
+      <TextInput placeholder="Phone" {...register("phone")} />
       <p>{errors.phone?.message}</p>
 
-      <input {...register("address")} placeholder="Address" />
+      <TextInput placeholder="Address" {...register("address")} />
 
-      <input type="number" {...register("childAge")} placeholder="Child age" />
+      <TextInput
+        type="number"
+        placeholder="Child age"
+        {...register("childAge")}
+      />
 
-      <input type="date" {...register("date")} />
+      <TextInput type="date" {...register("date")} />
 
-      <textarea {...register("comment")} placeholder="Comment" />
+      <Textarea placeholder="Comment" {...register("comment")} />
 
-      <button type="submit">Send</button>
-    </form>
+      <SubmitBtn>Send</SubmitBtn>
+    </FormLayout>
   )
 }
