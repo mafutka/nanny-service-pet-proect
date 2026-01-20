@@ -6,4 +6,11 @@
   box-sizing: border-box;
   padding-left: 18px;
   font-size: 16px;
+  background-color: var(--background-main);
+   outline: none;
+}
+
+.input:focus,
+.input:hover {
+  border: 1px solid rgba(17, 16, 28, 0.1);
 }

@@ -1,0 +1,19 @@
+.nannyInfo {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 30px;
+}
+
+.avatar {
+    border-radius: 15px;
+}
+
+.yourNanny {
+    font-size: 12px;
+}
+
+.nanny {
+    font-weight: 500;
+font-size: 16px;
+line-height: 150%;
+}

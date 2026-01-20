@@ -11,7 +11,7 @@
 }
 
 .modal {
-  background:var(--background-light);
+  background:var(--background-main);
   border-radius: 30px;
   max-width: 599px;
   width: 100%;
@@ -35,6 +35,11 @@ max-height: calc(100vh - 32px);
 .closeIcon{
     stroke-width: 2.50px;
 stroke: #11101c;
+}
+
+.nannyInfo {
+    display: flex;
+    flex-direction: row;
 }
 
 
