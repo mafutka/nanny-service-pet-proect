@@ -109,6 +109,10 @@
   border: none;
   background: transparent;
 }
+
+.reviews {
+    padding-left: 0;
+}
 .reviewItem {
     display: flex;
     margin: 48px 0;
