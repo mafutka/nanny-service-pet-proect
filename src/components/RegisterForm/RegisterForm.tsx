@@ -1,12 +1,38 @@
-import FormLayout from "../FormLayout/FormLayout";
-import TextInput from "../TextInput/TextInput";
-import SubmitBtn from "../SubmitBtn/SubmitBtn";
+"use client"
 
-export default function RegisterForm() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Register submit");
-  };
+import { useState } from "react"
+import FormLayout from "../FormLayout/FormLayout"
+import TextInput from "../TextInput/TextInput"
+import SubmitBtn from "../SubmitBtn/SubmitBtn"
+import { useAuth } from "@/context/AuthContext"
+
+type Props = {
+  onSuccess?: () => void
+}
+
+export default function RegisterForm({ onSuccess }: Props) {
+  const { register } = useAuth()
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setError("")
+    setLoading(true)
+
+    const formData = new FormData(e.currentTarget)
+    const email = formData.get("email") as string
+    const password = formData.get("password") as string
+
+    try {
+      await register(email, password)
+      onSuccess?.()
+    } catch (err) {
+      setError("Registration failed. Try another email.")
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <FormLayout
@@ -14,11 +40,19 @@ export default function RegisterForm() {
       text="Thank you for your interest in our platform! Please provide the following information."
       onSubmit={handleSubmit}
     >
-      <TextInput type="text" placeholder="Name" required />
-      <TextInput type="email" placeholder="Email" required />
-      <TextInput type="password" placeholder="Password" required />
+      <TextInput name="email" type="email" placeholder="Email" required />
+      <TextInput
+        name="password"
+        type="password"
+        placeholder="Password"
+        required
+      />
 
-      <SubmitBtn>Register</SubmitBtn>
+      {error && <p style={{ color: "red" }}>{error}</p>}
+
+      <SubmitBtn disabled={loading}>
+        {loading ? "Registering..." : "Register"}
+      </SubmitBtn>
     </FormLayout>
-  );
+  )
 }
