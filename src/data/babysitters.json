@@ -1,4 +1,5 @@
-[
+{
+  "nannies":[
   {
     "name": "Anna Shevchenko",
     "avatar_url": "https://ftp.goit.study/img/avatars/23.jpg",
@@ -700,3 +701,4 @@
     "rating": 4.95
   }
 ]
+}

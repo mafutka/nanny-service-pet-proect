@@ -71,6 +71,11 @@
   fill: none;
 }
 
+.active .heartIcon {
+  fill: var(--background-header);
+  stroke: var(--background-header);
+}
+
 .tags {
   display: flex;
   flex-wrap: wrap;

@@ -1,20 +1,49 @@
 "use client"
 
-import { useState, useMemo } from "react"
-import rawNannies from "@/data/babysitters.json"
+import { useEffect, useMemo, useState } from "react"
+import { ref, get } from "firebase/database"
+import { database } from "@/lib/firebase"
+
 import NanniesList from "@/components/NanniesList/NanniesList"
 import Filters from "@/components/Filters/Filters"
+
 import { Nanny } from "@/types/nannies"
 import { NannyFilter } from "@/types/filters"
 
-const nannies: Nanny[] = rawNannies.map((nanny, index) => ({
-  ...nanny,
-  id: String(index),
-}))
-
 export default function NanniesPage() {
+  const [nannies, setNannies] = useState<Nanny[]>([])
+  const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState<NannyFilter>("all")
 
+  useEffect(() => {
+    const fetchNannies = async () => {
+      console.log("🔥 fetchNannies started")
+      try {
+        const snapshot = await get(ref(database, "nannies"))
+
+        if (snapshot.exists()) {
+          const data = snapshot.val()
+
+          const nanniesArray: Nanny[] = Object.entries(data).map(
+            ([id, nanny]) => ({
+              id,
+              ...(nanny as Omit<Nanny, "id">),
+            })
+          )
+
+          setNannies(nanniesArray)
+        }
+      } catch (error) {
+        console.error("Error fetching nannies:", error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchNannies()
+  }, [])
+
+  // 🔹 2. ФІЛЬТРАЦІЯ (ТЕ САМЕ, ЩО Й РАНІШЕ)
   const filteredNannies = useMemo(() => {
     const data = [...nannies]
 
@@ -34,7 +63,11 @@ export default function NanniesPage() {
       default:
         return data
     }
-  }, [filter])
+  }, [filter, nannies])
+
+  if (loading) {
+    return <p style={{ textAlign: "center" }}>Loading nannies...</p>
+  }
 
   return (
     <>

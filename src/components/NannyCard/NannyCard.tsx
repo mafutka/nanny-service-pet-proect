@@ -1,20 +1,63 @@
 "use client"
 
 import { calcAge } from "@/utils/calcAge"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Nanny } from "@/types/nannies"
 import AppointmentModal from "../AppointmentModal/AppointmentModal"
 import css from "./NannyCard.module.css"
 
+import { ref, get, set, remove } from "firebase/database"
+import { database } from "@/lib/firebase"
+import { useAuth } from "@/context/AuthContext"
+import clsx from "clsx"
+
 type Props = {
   nanny: Nanny
-  isLoggedIn?: boolean
 }
 
-export default function NannyCard({ nanny, isLoggedIn }: Props) {
+export default function NannyCard({ nanny }: Props) {
+  const { user } = useAuth()
+
   const [expanded, setExpanded] = useState(false)
   const [isFavorite, setIsFavorite] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
+
+  // 🔹 перевіряємо чи ця няня вже в улюблених
+  useEffect(() => {
+    if (!user) return
+
+    const favRef = ref(
+      database,
+      `users/${user.uid}/favorites/${nanny.id}`
+    )
+
+    get(favRef).then(snapshot => {
+      if (snapshot.exists()) {
+        setIsFavorite(true)
+      }
+    })
+  }, [user, nanny.id])
+
+  // 🔹 клік по серцю
+  const handleToggleFavorite = async () => {
+    if (!user) {
+      alert("This feature is available only for authorized users")
+      return
+    }
+
+    const favRef = ref(
+      database,
+      `users/${user.uid}/favorites/${nanny.id}`
+    )
+
+    if (isFavorite) {
+      await remove(favRef)
+      setIsFavorite(false)
+    } else {
+      await set(favRef, true)
+      setIsFavorite(true)
+    }
+  }
 
   return (
     <div className={css.container}>
@@ -28,6 +71,7 @@ export default function NannyCard({ nanny, isLoggedIn }: Props) {
           className={css.avatar}
         />
       </div>
+
       <div className={css.infoBlock}>
         {/* Header */}
         <div className={css.header}>
@@ -35,64 +79,50 @@ export default function NannyCard({ nanny, isLoggedIn }: Props) {
             <p>Nanny</p>
             <h3>{nanny.name}</h3>
           </div>
+
           <div className={css.metaRow}>
-          <div className={css.adressBlock}>
-            <span>{nanny.location}</span>
-            <span className={css.decor}>|</span>
-            <span>⭐ {nanny.rating}</span>
-            <span className={css.decor}>|</span>
-            <span className={css.price}>
-              Price/1 hour{" "}
-              <span className={css.greenprice}>{nanny.price_per_hour}$</span>
-            </span>
-          </div>
-          <button
-            className={css.heartBtn}
-            aria-label="Add to favorites"
-            onClick={() => setIsFavorite((prev) => !prev)}
-          >
-            <svg
-              className={css.heartIcon}
+            <div className={css.adressBlock}>
+              <span>{nanny.location}</span>
+              <span className={css.decor}>|</span>
+              <span>⭐ {nanny.rating}</span>
+              <span className={css.decor}>|</span>
+              <span className={css.price}>
+                Price/1 hour{" "}
+                <span className={css.greenprice}>
+                  {nanny.price_per_hour}$
+                </span>
+              </span>
+            </div>
+
+            {/* ❤️ */}
+            <button
+              className={clsx(css.heartBtn, isFavorite && css.active)}
               aria-label="Add to favorites"
-              onClick={() => setIsFavorite((prev) => !prev)}
+              onClick={handleToggleFavorite}
             >
-              <use href="/symbol-defs.svg#icon-heart"></use>
-            </svg>
-          </button>
+              <svg className={css.heartIcon}>
+                <use href="/symbol-defs.svg#icon-heart" />
+              </svg>
+            </button>
           </div>
         </div>
 
         {/* Tags */}
         <ul className={css.tags}>
           <li className={css.tagItem}>
-            <span className={css.tagItemText}>
-              Age:{" "}
-              <span className={css.fromJson}>{calcAge(nanny.birthday)}</span>
-            </span>
+            Age: <span>{calcAge(nanny.birthday)}</span>
           </li>
           <li className={css.tagItem}>
-            <span className={css.tagItemText}>
-              Experience:{" "}
-              <span className={css.fromJson}>{nanny.experience}</span>
-            </span>
+            Experience: <span>{nanny.experience}</span>
           </li>
           <li className={css.tagItem}>
-            <span className={css.tagItemText}>
-              Kids age: <span className={css.fromJson}>{nanny.kids_age}</span>
-            </span>
+            Kids age: <span>{nanny.kids_age}</span>
           </li>
           <li className={css.tagItem}>
-            <span className={css.tagItemText}>
-              Characters:{" "}
-              <span className={css.fromJson}>
-                {nanny.characters.join(", ")}
-              </span>
-            </span>
+            Characters: <span>{nanny.characters.join(", ")}</span>
           </li>
           <li className={css.tagItem}>
-            <span className={css.tagItemText}>
-              Education: <span className={css.fromJson}>{nanny.education}</span>
-            </span>
+            Education: <span>{nanny.education}</span>
           </li>
         </ul>
 
@@ -101,10 +131,8 @@ export default function NannyCard({ nanny, isLoggedIn }: Props) {
           {nanny.about}
         </p>
 
-        {/* Actions */}
         {!expanded && (
           <button
-            type="button"
             className={css.readMore}
             onClick={() => setExpanded(true)}
           >
@@ -112,33 +140,26 @@ export default function NannyCard({ nanny, isLoggedIn }: Props) {
           </button>
         )}
 
-        {/* Reviews */}
-
         {expanded && (
           <>
             {/* Reviews */}
             <ul className={css.reviews}>
-  {nanny.reviews.map((review, index) => {
-    const initial = review.reviewer.charAt(0).toUpperCase()
+              {nanny.reviews.map((review, index) => (
+                <li key={index} className={css.reviewItem}>
+                  <div className={css.reviewAvatar}>
+                    {review.reviewer[0].toUpperCase()}
+                  </div>
+                  <div>
+                    <p>
+                      {review.reviewer} ⭐ {review.rating}
+                    </p>
+                    <p>{review.comment}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
 
-    return (
-      <li key={index} className={css.reviewItem}>
-        <div className={css.reviewAvatar}>{initial}</div>
-
-        <div className={css.reviewBlock}>
-          <p className={css.reviewer}>
-            {review.reviewer} <span className={css.rate}>⭐ {review.rating}</span>
-          </p>
-          <p className={css.reviewText}>{review.comment}</p>
-        </div>
-      </li>
-    )
-  })}
-</ul>
-
-            {/* Appointment button */}
             <button
-              type="button"
               className={css.appointmentBtn}
               onClick={() => setIsModalOpen(true)}
             >
@@ -146,12 +167,13 @@ export default function NannyCard({ nanny, isLoggedIn }: Props) {
             </button>
           </>
         )}
-         {isModalOpen && (
-    <AppointmentModal
-      nanny={nanny}
-      onClose={() => setIsModalOpen(false)}
-    />
-  )}
+
+        {isModalOpen && (
+          <AppointmentModal
+            nanny={nanny}
+            onClose={() => setIsModalOpen(false)}
+          />
+        )}
       </div>
     </div>
   )

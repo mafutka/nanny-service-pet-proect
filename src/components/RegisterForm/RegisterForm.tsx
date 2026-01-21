@@ -40,6 +40,7 @@ export default function RegisterForm({ onSuccess }: Props) {
       text="Thank you for your interest in our platform! Please provide the following information."
       onSubmit={handleSubmit}
     >
+
       <TextInput name="email" type="email" placeholder="Email" required />
       <TextInput
         name="password"
