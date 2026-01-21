@@ -1,15 +1,20 @@
-import { useState, useMemo } from "react"; 
-import NanniesList from "@/components/NanniesList/NanniesList";
-import { Nanny } from "@/types/nannies";
-import { NannyFilter } from "@/types/filters";
-import Filters from "@/components/Filters/Filters";
+"use client"
 
-type Props = {
-  nannies: Nanny[]
-}
+import { useState, useMemo } from "react"
+import rawNannies from "@/data/babysitters.json"
+import NanniesList from "@/components/NanniesList/NanniesList"
+import Filters from "@/components/Filters/Filters"
+import { Nanny } from "@/types/nannies"
+import { NannyFilter } from "@/types/filters"
 
-export default function NanniesPage({ nannies }: Props) {
+const nannies: Nanny[] = rawNannies.map((nanny, index) => ({
+  ...nanny,
+  id: String(index),
+}))
+
+export default function NanniesPage() {
   const [filter, setFilter] = useState<NannyFilter>("all")
+
   const filteredNannies = useMemo(() => {
     const data = [...nannies]
 
@@ -29,10 +34,12 @@ export default function NanniesPage({ nannies }: Props) {
       default:
         return data
     }
-  }, [filter, nannies])
+  }, [filter])
+
   return (
     <>
-    <Filters value={filter} onChange={setFilter} />
-  <NanniesList nannies={filteredNannies}/>
-  </>)
+      <Filters value={filter} onChange={setFilter} />
+      <NanniesList nannies={filteredNannies} />
+    </>
+  )
 }

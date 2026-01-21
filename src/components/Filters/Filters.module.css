@@ -3,14 +3,25 @@
 }
 
 .select {
+  position: absolute;
+  top: 140px;
+  left: 128px;
+  max-width: 226px;;
   width: 100%;
   padding: 14px 40px 14px 16px;
   border-radius: 14px;
-  border: none;
+ outline: none;
   font-size: 16px;
   font-weight: 500;
   color: white;
   background-color: var(--background-header); 
   appearance: none;
   cursor: pointer;
+  
+}
+
+.select:focus,
+.select:hover {
+  outline: none;
+  box-shadow: none;
 }
