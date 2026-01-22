@@ -43,7 +43,6 @@ export default function NanniesPage() {
     fetchNannies()
   }, [])
 
-  // 🔹 2. ФІЛЬТРАЦІЯ (ТЕ САМЕ, ЩО Й РАНІШЕ)
   const filteredNannies = useMemo(() => {
     const data = [...nannies]
 

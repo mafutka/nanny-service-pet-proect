@@ -35,7 +35,7 @@ export default function Header({ variant = "colored" }: HeaderProps) {
               className={css.registerBtn}
               onClick={() => setAuthType("register")}
             >
-              Register
+              Registration
             </button>
           </div>
         ) : (
