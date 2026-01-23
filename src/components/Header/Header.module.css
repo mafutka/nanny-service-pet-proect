@@ -6,6 +6,12 @@
  height: auto; 
   z-index: 10;
 }
+
+@media (max-width: 768px) {
+  .header {
+    position: static; 
+  }
+}
 .inner {
   max-width: 1440px;
   margin: 0 auto;

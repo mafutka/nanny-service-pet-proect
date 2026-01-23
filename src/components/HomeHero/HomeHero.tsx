@@ -4,7 +4,7 @@ export default function HomeHero({ children }: { children: React.ReactNode }) {
   return (
     <section className={css.hero}>
       {children}
-      <div className={css.HeroContainer}>
+      <div className={css.heroContainer}>
         <div className={css.heroInfo}>
           <h1 className={css.heroTitle}>Make Life Easier for the Family:</h1>
           <p className={css.heroText}>
