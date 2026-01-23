@@ -11,6 +11,7 @@ type Props = {
 export default function Filters({ value, onChange }: Props) {
   return (
     <div className={css.wrapper}>
+      <p className={css.text}>Filter</p>
       <select
         className={css.select}
         value={value}

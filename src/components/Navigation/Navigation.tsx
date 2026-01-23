@@ -21,8 +21,6 @@ export default function Navigation() {
                 </li>
                 {isLoggedIn && (
                     <li className={css.navItem}>
-                        {/* Зверніть увагу на написання: favourites чи favorites? 
-                            У файлі сторінки у вас FavoritesPage, перевірте назву папки в app/ */}
                         <Link href="/favourites" className={pathname === "/favourites" ? css.active : ""}>
                             Favorites
                         </Link>

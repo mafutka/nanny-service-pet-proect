@@ -7,12 +7,28 @@
   width: 100%;
   height: auto;
   background-color: var(--background-light);
+  overflow: hidden; 
+}
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+     align-items: stretch; 
+  }
+   .image {
+    margin: 0 auto;
+  }
 }
 .header {
   display: flex;
   justify-content: space-between;
   margin-bottom: 24px;
   position: relative;
+}
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .image {
@@ -34,6 +50,7 @@
   align-items: center;
   justify-content: space-between;
 }
+
 .infoBlock {
   display: flex;
   flex-direction: column;
@@ -41,9 +58,12 @@
 
 .adressBlock {
   display: flex;
-  gap: 16px;
-  margin-right: 74px;
+  gap: 8px;
+  flex-wrap: wrap;    
+  margin-right: 0;    
+  font-size: 14px;
 }
+
 .decor {
   color: rgba(17, 16, 28, 0.2);
 }
@@ -88,9 +108,14 @@
 .tagItem {
   border-radius: 24px;
   padding: 8px 16px;
-  width: auto;
-  height: 40px;
   background: var(--background-main);
+
+  display: inline-flex;        
+  align-items: center;
+  max-width: 100%;             
+  height: auto;                
+  white-space: normal;         
+  word-break: break-word;      
 }
 
 .tagItemText {
@@ -116,47 +141,48 @@
 }
 
 .reviews {
-    padding-left: 0;
+  padding-left: 0;
 }
 .reviewItem {
-    display: flex;
-    margin: 48px 0;
-    gap: 16px;
+  display: flex;
+  margin: 48px 0;
+  gap: 16px;
 }
 .reviewAvatar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 100px;
-width: 44px;
-height: 44px;
-background: rgba(16, 57, 49, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  width: 44px;
+  height: 44px;
+  background: rgba(16, 57, 49, 0.2);
 }
-.reviewBlock {}
+.reviewBlock {
+}
 
-.reviewer{
-    display: flex;
-    flex-direction: column;
-    font-weight: 500;
-font-size: 16px;
-line-height: 125%;
-color: var(--text-primary);
+.reviewer {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--text-primary);
 }
 .rate {
-    font-size: 14px;
+  font-size: 14px;
 }
 
-.appointmentBtn{
-    border-radius: 30px;
-    border: none;
-padding: 14px 28px;
-max-width: 215px;
-width: 100%;
-height: 48px;
-background-color: var(--background-header);
-font-weight: 500;
-font-size: 16px;
-line-height: 125%;
-letter-spacing: -0.01em;
-color: var(--text-light);
+.appointmentBtn {
+  border-radius: 30px;
+  border: none;
+  padding: 14px 28px;
+  max-width: 215px;
+  width: 100%;
+  height: 48px;
+  background-color: var(--background-header);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: var(--text-light);
 }

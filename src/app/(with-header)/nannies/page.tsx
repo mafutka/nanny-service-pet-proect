@@ -10,6 +10,8 @@ import Filters from "@/components/Filters/Filters"
 import { Nanny } from "@/types/nannies"
 import { NannyFilter } from "@/types/filters"
 
+import css from "./NanniesPage.module.css"
+
 export default function NanniesPage() {
   const [nannies, setNannies] = useState<Nanny[]>([])
   const [loading, setLoading] = useState(true)
@@ -70,8 +72,10 @@ export default function NanniesPage() {
 
   return (
     <>
+    <section className={css.page}>
       <Filters value={filter} onChange={setFilter} />
       <NanniesList nannies={filteredNannies} />
+      </section>
     </>
   )
 }
