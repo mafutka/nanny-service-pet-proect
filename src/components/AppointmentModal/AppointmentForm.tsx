@@ -46,13 +46,11 @@ export default function AppointmentForm({ nanny, onSuccess }: Props) {
       text="Arranging a meeting with a caregiver for your child is the first step to creating a safe and comfortable environment. Fill out the form below so we can match you with the perfect care partner."
       onSubmit={handleSubmit(onSubmit)}
     >
-        <NannyInfo nanny={nanny}/>
-    
+      <NannyInfo nanny={nanny} />
+
       <div className={css.row}>
         <TextInput placeholder="Address" {...register("address")} />
-
         <TextInput placeholder="+380" {...register("phone")} />
-        <p>{errors.phone?.message}</p>
       </div>
 
       <div className={css.row}>
@@ -62,16 +60,13 @@ export default function AppointmentForm({ nanny, onSuccess }: Props) {
           {...register("childAge")}
         />
 
-         <Controller
-    name="date"
-    control={control}
-    render={({ field }) => (
-      <TimePicker
-        value={field.value}
-        onChange={field.onChange}
-      />
-    )}
-  />
+        <Controller
+          name="date"
+          control={control}
+          render={({ field }) => (
+            <TimePicker value={field.value} onChange={field.onChange} />
+          )}
+        />
       </div>
 
       <TextInput type="email" placeholder="Email" {...register("email")} />
