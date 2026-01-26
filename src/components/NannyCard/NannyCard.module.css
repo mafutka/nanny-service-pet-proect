@@ -50,6 +50,12 @@
   align-items: center;
   justify-content: space-between;
 }
+.mapIcon {
+  height: 16px;
+  width: 16px;
+  fill: transparent;
+  stroke: var(--text-primary);
+}
 
 .infoBlock {
   display: flex;

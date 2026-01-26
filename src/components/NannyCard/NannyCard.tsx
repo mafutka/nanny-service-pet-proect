@@ -82,6 +82,11 @@ export default function NannyCard({ nanny }: Props) {
 
           <div className={css.metaRow}>
             <div className={css.adressBlock}>
+              <span>
+                  <svg className={css.mapIcon}>
+                <use href="/symbol-defs.svg#icon-map-pin" />
+              </svg>
+              </span>
               <span>{nanny.location}</span>
               <span className={css.decor}>|</span>
               <span>⭐ {nanny.rating}</span>
